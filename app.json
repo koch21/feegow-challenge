@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "Feegow",
+    "slug": "Feegow",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "Feegow"
+}
