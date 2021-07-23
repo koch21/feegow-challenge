@@ -15,7 +15,7 @@ import {
   Inter_700Bold,
 } from "@expo-google-fonts/inter";
 
-export default function App() {
+const App = () => {
   // Iniciando fonts do Google para que sejam aceitas em todos os components
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
@@ -26,9 +26,11 @@ export default function App() {
   return (
     <ThemeProvider theme={light}>
       <NavigationContainer>
-        <StatusBar style="auto" />
+        <StatusBar style="auto" backgroundColor="#497e9c" />
         <Routes />
       </NavigationContainer>
     </ThemeProvider>
   );
-}
+};
+
+export default App;

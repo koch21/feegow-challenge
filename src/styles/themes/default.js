@@ -4,15 +4,15 @@ export const light = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: "#121212",
-    secundary: "#f2f2f2",
+    primary: "#f2f2f2",
+    secondary: "#121212",
 
     grey: "#cdcecd",
     lightGrey: "#e4e4e4",
     darkGrey: "#b5b5b5",
     darkestGrey: "#898989",
-    blue: "#0392ea",
-    red: "#ff4444",
+    blue: "#5799ba",
+    green: "#6ab688",
   },
   fonts: {
     regular: "Inter_400Regular",
