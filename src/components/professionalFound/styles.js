@@ -33,7 +33,7 @@ export const Name = styled.Text`
   font-family: ${(props) => props.theme.fonts.bold};
   font-size: ${(props) => props.theme.fontSizes.large};
 
-  margin-left: 16px;
+  margin-left: 80px;
 `;
 export const Crm = styled.Text`
   color: ${(props) => props.theme.colors.darkestGrey};
@@ -41,7 +41,7 @@ export const Crm = styled.Text`
   font-family: ${(props) => props.theme.fonts.medium};
   font-size: ${(props) => props.theme.fontSizes.medium};
 
-  margin-left: 16px;
+  margin-left: 80px;
 `;
 export const Button = styled.TouchableOpacity`
   background-color: ${(props) => props.theme.colors.blue};
@@ -58,4 +58,13 @@ export const ButtonText = styled.Text`
 
   font-family: ${(props) => props.theme.fonts.bold};
   font-size: ${(props) => props.theme.fontSizes.small};
+`;
+export const Img = styled.Image`
+  position: absolute;
+
+  width: 64px;
+  height: 64px;
+  border-radius: 32px;
+
+  margin: 12px;
 `;

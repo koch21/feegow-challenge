@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ActivityIndicator, FlatList } from "react-native";
+import { ActivityIndicator, FlatList, View } from "react-native";
 
 // importando api
 import api from "../../services/api";
@@ -13,6 +13,7 @@ import {
   Crm,
   Button,
   ButtonText,
+  Img,
 } from "./styles";
 
 const ProfessionalFound = () => {
@@ -35,24 +36,42 @@ const ProfessionalFound = () => {
     }
   });
 
+  useEffect(() => {
+    const professionalsFiltered = professionals.filter((item) => {
+      const professionalsData = item.conselho === "CRM";
+      return professionalsData;
+    });
+    setFilteredProfessionals(professionalsFiltered);
+  }, [professionals]);
+
   return isLoading ? (
     <ActivityIndicator />
   ) : (
     <Container>
       <Title>2 Dermatologistas encontrados</Title>
       <FlatList
-        data={professionals}
+        data={filteredProfessionals}
         keyExtractor={({ profissional_id }) => profissional_id}
         renderItem={({ item }) => (
           <Wrapper>
+            <Img source={{ uri: item.foto }} />
             <Box>
               <Name>
                 {item.tratamento} {""}
-                {item.nome}
+                {item.nome.substr(0, 19)}
               </Name>
               <Crm>
                 {item.conselho}: {item.documento_conselho}
               </Crm>
+              {/* <FlatList
+                data={item.especialidades}
+                keyExtractor={({ especialidade_id }) => especialidade_id}
+                renderItem={({ item }) => (
+                  <View>
+                  <Crm>{item.nome_especialidade}</Crm>
+                  </View>
+                  )}
+                /> */}
               <Button>
                 <ButtonText>Agendar</ButtonText>
               </Button>
