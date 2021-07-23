@@ -1,0 +1,67 @@
+import React, { useState, useEffect } from "react";
+import { ActivityIndicator, FlatList } from "react-native";
+
+// importando api
+import api from "../../services/api";
+
+import {
+  Container,
+  Wrapper,
+  Title,
+  Name,
+  Box,
+  Crm,
+  Button,
+  ButtonText,
+} from "./styles";
+
+const ProfessionalFound = () => {
+  const [professionals, setProfessionals] = useState([]);
+  const [filteredProfessionals, setFilteredProfessionals] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Consumindo API
+  useEffect(() => {
+    try {
+      api
+        .get("/professional/list")
+        .then((res) => {
+          setProfessionals(res.data.content),
+            setFilteredProfessionals(res.data.content);
+        })
+        .finally(() => setIsLoading(false));
+    } catch (err) {
+      console.error(err);
+    }
+  });
+
+  return isLoading ? (
+    <ActivityIndicator />
+  ) : (
+    <Container>
+      <Title>2 Dermatologistas encontrados</Title>
+      <FlatList
+        data={professionals}
+        keyExtractor={({ profissional_id }) => profissional_id}
+        renderItem={({ item }) => (
+          <Wrapper>
+            <Box>
+              <Name>
+                {item.tratamento} {""}
+                {item.nome}
+              </Name>
+              <Crm>
+                {item.conselho}: {item.documento_conselho}
+              </Crm>
+              <Button>
+                <ButtonText>Agendar</ButtonText>
+              </Button>
+            </Box>
+          </Wrapper>
+        )}
+      />
+    </Container>
+  );
+};
+
+export default ProfessionalFound;

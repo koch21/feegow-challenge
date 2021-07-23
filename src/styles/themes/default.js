@@ -1,4 +1,6 @@
 import { DefaultTheme } from "@react-navigation/native";
+import { Dimensions } from "react-native";
+const { height, width } = Dimensions.get("window");
 
 export const light = {
   ...DefaultTheme,
@@ -15,14 +17,21 @@ export const light = {
     green: "#6ab688",
   },
   fonts: {
+    ...DefaultTheme.fonts,
     regular: "Inter_400Regular",
     medium: "Inter_500Medium",
     bold: "Inter_700Bold",
   },
   fontSizes: {
     ...DefaultTheme.fontSizes,
-    small: 14,
+    small: 15,
     medium: 17,
     large: 20,
+    largest: 23,
+  },
+  dimensions: {
+    ...DefaultTheme.dimensions,
+    width: width,
+    height: height,
   },
 };
