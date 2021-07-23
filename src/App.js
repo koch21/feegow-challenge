@@ -26,7 +26,7 @@ const App = () => {
   return (
     <ThemeProvider theme={light}>
       <NavigationContainer>
-        <StatusBar style="auto" backgroundColor="#497e9c" />
+        <StatusBar style="auto" backgroundColor={light.colors.blue} />
         <Routes />
       </NavigationContainer>
     </ThemeProvider>
