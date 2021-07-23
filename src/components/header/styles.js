@@ -7,12 +7,12 @@ export const Container = styled.View`
   width: 100%;
   height: 12%;
 
-  background-color: black;
+  background-color: ${(props) => props.theme.colors.primary};
 `;
 export const Title = styled.Text`
   margin-top: 8%;
 
-  font-size: 20px;
-  font-weight: bold;
+  font-family: ${(props) => props.theme.fonts.bold};
+  font-size: 18px;
   color: #fff;
 `;
