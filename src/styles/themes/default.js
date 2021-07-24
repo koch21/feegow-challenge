@@ -9,6 +9,7 @@ export const light = {
     primary: "#f2f2f2",
     secondary: "#121212",
 
+    white: "#fff",
     grey: "#cdcecd",
     lightGrey: "#e4e4e4",
     darkGrey: "#b5b5b5",
