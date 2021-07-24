@@ -1,11 +1,18 @@
 import "react-native-gesture-handler";
 import React from "react";
-import { StatusBar } from "expo-status-bar";
-import { NavigationContainer } from "@react-navigation/native";
-import { ThemeProvider } from "styled-components";
 
+// STORE
+import { Provider } from "react-redux";
+import store from "./store";
+
+// ROTAS
+import { NavigationContainer } from "@react-navigation/native";
 import Routes from "./routes/routes";
+
+// TEMA
+import { ThemeProvider } from "styled-components";
 import { light } from "./styles/themes/default";
+import { StatusBar } from "expo-status-bar";
 
 // Instalando fonts do Google
 import {
@@ -27,7 +34,9 @@ const App = () => {
     <ThemeProvider theme={light}>
       <NavigationContainer>
         <StatusBar style="auto" backgroundColor={light.colors.blue} />
-        <Routes />
+        <Provider store={store}>
+          <Routes />
+        </Provider>
       </NavigationContainer>
     </ThemeProvider>
   );

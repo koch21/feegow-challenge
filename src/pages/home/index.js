@@ -3,14 +3,14 @@ import { Container } from "./styles";
 
 import Header from "../../components/header";
 import ProfessionalList from "../../components/professionalList";
-import ProfessionalFound from "../../components/professionalFound";
+import DoctorList from "../../components/doctorList";
 
 const Home = () => {
   return (
     <>
       <Header />
       <Container>
-        <ProfessionalFound />
+        <DoctorList />
       </Container>
     </>
   );
