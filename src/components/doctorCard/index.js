@@ -1,24 +1,41 @@
 import React from "react";
-import { Container, Name, Box, Crm, Button, ButtonText, Img } from "./styles";
+import { Container, Info, Name, Prof, Crm, Button, Foto } from "./styles";
+import { MaterialIcons } from "@expo/vector-icons";
+import { light } from "../../styles/themes/default";
+
+// NAVIGATION
+import { useNavigation } from "@react-navigation/native";
 
 const DoctorCard = ({ item }) => {
-  const name = item.nome;
-  const nome = String(name).substr(0, 19);
+  // Navigation
+  const navigation = useNavigation();
+
+  const { foto, tratamento, nome, conselho, documento_conselho } = item;
+
+  // foto de um doutor aleatorio
+  const someDoctor = `https://iclinic-mkt.s3.amazonaws.com/ghost-images/images/2018/01/blog-como-ser-um-medico-bem-sucedido-5-atitudes-fundamentais.jpg`;
+
   return (
     <Container>
-      <Img source={{ uri: item.foto }} />
-      <Box>
+      <Foto source={{ uri: foto === null ? someDoctor : foto }} />
+      <Info>
         <Name>
-          {item.tratamento} {""}
-          {nome}
+          {tratamento} {""}
+          {String(nome).substr(0, 12)}
         </Name>
+        <Prof>cirurgiao</Prof>
         <Crm>
-          {item.conselho}: {item.documento_conselho}
+          {conselho}: {documento_conselho}
         </Crm>
-        <Button>
-          <ButtonText>Agendar</ButtonText>
-        </Button>
-      </Box>
+      </Info>
+
+      <Button onPress={() => navigation.navigate("DoctorProfile")}>
+        <MaterialIcons
+          name="keyboard-arrow-right"
+          size={29}
+          color={light.colors.white}
+        />
+      </Button>
     </Container>
   );
 };

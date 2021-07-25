@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "./styles";
 
-const Calendar = () => {
+const Calendar = ({ navigation }) => {
   return <Container />;
 };
 

@@ -1,17 +1,14 @@
 import React from "react";
-import { Container } from "./styles";
+import { Container, Title } from "./styles";
 
-import Header from "../../components/header";
 import DoctorList from "../../components/doctorList";
 
-const Home = () => {
+const Home = ({ navigation }) => {
   return (
-    <>
-      <Header />
-      <Container>
-        <DoctorList />
-      </Container>
-    </>
+    <Container>
+      <Title>Lista de Medicos</Title>
+      <DoctorList />
+    </Container>
   );
 };
 

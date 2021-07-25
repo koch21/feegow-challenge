@@ -4,29 +4,37 @@ import { FlatList } from "react-native";
 // REDUX
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllDoctors } from "../../store/fetchActions/index";
+import { addSchedule } from "../../store/ducks/schedules/index";
 
 // STYLES
 import DoctorCard from "../doctorCard";
 import { Container, Title } from "./styles";
 
 const DoctorList = () => {
-  // Recebendo o dispatch de fetchAllDoctors
-  const doctors = useSelector((state) => state.doctors);
+  // Redux dispatch
   const dispatch = useDispatch();
 
+  // Recebendo o dispatch de fetchAllDoctors
+  const doctors = useSelector((state) => state.doctors.content);
+
+  // renderizando a lista de doutores
   useEffect(() => {
     dispatch(fetchAllDoctors());
   }, [doctors, dispatch]);
 
+  // Function para agendar um novo horario
+  const addNewSchedule = (item) => {
+    dispatch(addSchedule(item));
+  };
+
   return (
     <Container>
-      <Title>2 Dermatologistas encontrados</Title>
       <FlatList
-        data={doctors.content}
-        keyExtractor={({ profissional_id }) => profissional_id}
-        renderItem={({ item }) =>
-          item.conselho === "CRM" ? <DoctorCard item={item} /> : null
-        }
+        data={doctors}
+        keyExtractor={(item) => String(item.profissional_id)}
+        renderItem={({ item }) => (
+          <DoctorCard item={item} addSchedule={addNewSchedule} />
+        )}
       />
     </Container>
   );

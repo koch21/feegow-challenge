@@ -1,13 +1,13 @@
 import "react-native-gesture-handler";
 import React from "react";
 
-// STORE
-import { Provider } from "react-redux";
-import store from "./store";
-
 // ROTAS
 import { NavigationContainer } from "@react-navigation/native";
 import Routes from "./routes/routes";
+
+// STORE
+import { Provider } from "react-redux";
+import store from "./store";
 
 // TEMA
 import { ThemeProvider } from "styled-components";
@@ -33,7 +33,7 @@ const App = () => {
   return (
     <ThemeProvider theme={light}>
       <NavigationContainer>
-        <StatusBar style="auto" backgroundColor={light.colors.blue} />
+        <StatusBar style={light.colors.secondary} />
         <Provider store={store}>
           <Routes />
         </Provider>

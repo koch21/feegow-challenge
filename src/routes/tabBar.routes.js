@@ -1,6 +1,5 @@
 import React from "react";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
 
 // PAGINAS
 import Home from "../pages/home";
@@ -9,8 +8,9 @@ import Calendar from "../pages/calendar";
 import Setting from "../pages/setting";
 import Profile from "../pages/profile";
 
-// Tema
+// STYLES
 import { light } from "../styles/themes/default";
+import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
 
 const TabBar = createMaterialBottomTabNavigator();
 
@@ -38,14 +38,14 @@ const screenOptions = ({ route }) => ({
 
     return iconName === "settings" ? (
       <Ionicons
-        name={iconName}
-        size={focused ? 25 : 22}
+        name={focused ? iconName : iconName + "-outline"}
+        size={focused ? 24 : 22}
         color={focused ? light.colors.blue : light.colors.darkGrey}
       />
     ) : (
       <MaterialCommunityIcons
-        name={iconName}
-        size={focused ? 26 : 22}
+        name={focused ? iconName : iconName + "-outline"}
+        size={focused ? 25 : 22}
         color={focused ? light.colors.blue : light.colors.darkGrey}
       />
     );
@@ -59,7 +59,7 @@ const TabRoutes = () => {
         backgroundColor: light.colors.primary,
       }}
       labeled={false}
-      initialRouteName="Home"
+      initialRouteName="Schedule"
       screenOptions={screenOptions}
     >
       <TabBar.Screen name="Home" component={Home} />
