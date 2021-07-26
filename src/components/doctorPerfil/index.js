@@ -2,20 +2,33 @@ import React from "react";
 import { FlatList } from "react-native";
 import {
   Container,
-  InfoHeader,
+  Header,
   Foto,
   Name,
   Age,
   Expertise,
-  InfoBody,
+  Body,
   AvailableDate,
   Local,
-  InfoFooter,
+  Footer,
   Button,
+  ButtonText,
 } from "./styles";
 
 const DoctorPerfil = ({ item, addSchedule }) => {
-  const { foto, nome, data_nascimento, especialidades } = item;
+  const {
+    foto,
+    tratamento,
+    nome,
+    data_nascimento,
+    especialidades,
+    CRM,
+    CPF,
+    sexo,
+    telefones,
+    celulares,
+    email,
+  } = item;
 
   // Calculando idade do Doutor pela data de nascimento
   const age = (data) => {
@@ -29,12 +42,15 @@ const DoctorPerfil = ({ item, addSchedule }) => {
   // foto de um doutor aleatorio
   const someDoctor = `https://iclinic-mkt.s3.amazonaws.com/ghost-images/images/2018/01/blog-como-ser-um-medico-bem-sucedido-5-atitudes-fundamentais.jpg`;
 
+  console.log(item);
   return (
     <Container>
-      <InfoHeader>
+      <Header>
         <Foto source={{ uri: foto === null ? someDoctor : foto }} />
-        <Name>{nome}</Name>
-        <Age>{age(new Date(`${data_nascimento}`))}</Age>
+        <Name>
+          {tratamento} {nome}
+        </Name>
+        <Age>{age(new Date(`${data_nascimento}`))} Anos</Age>
         <FlatList
           data={especialidades}
           keyExtractor={(item) => String(item.especialidade_id)}
@@ -42,16 +58,18 @@ const DoctorPerfil = ({ item, addSchedule }) => {
             <Expertise>{item.nome_especialidade}</Expertise>
           )}
         />
-      </InfoHeader>
+      </Header>
 
-      <InfoBody>
+      <Body>
         <AvailableDate></AvailableDate>
         <Local></Local>
-      </InfoBody>
+      </Body>
 
-      <InfoFooter>
-        <Button></Button>
-      </InfoFooter>
+      <Footer>
+        <Button>
+          <ButtonText>Agendar</ButtonText>
+        </Button>
+      </Footer>
     </Container>
   );
 };

@@ -14,7 +14,7 @@ import { ThemeProvider } from "styled-components";
 import { light } from "./styles/themes/default";
 import { StatusBar } from "expo-status-bar";
 
-// Instalando fonts do Google
+// GOOGLE FONTES
 import {
   useFonts,
   Inter_400Regular,

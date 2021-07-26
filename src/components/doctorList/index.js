@@ -8,7 +8,7 @@ import { addSchedule } from "../../store/ducks/schedules/index";
 
 // STYLES
 import DoctorCard from "../doctorCard";
-import { Container, Title } from "./styles";
+import { Container } from "./styles";
 
 const DoctorList = () => {
   // Redux dispatch
@@ -27,17 +27,20 @@ const DoctorList = () => {
     dispatch(addSchedule(item));
   };
 
-  return (
-    <Container>
+  // renderizando a lista de doutores
+  const renderList = (doctor) => {
+    return (
       <FlatList
-        data={doctors}
+        data={doctor}
         keyExtractor={(item) => String(item.profissional_id)}
         renderItem={({ item }) => (
           <DoctorCard item={item} addSchedule={addNewSchedule} />
         )}
       />
-    </Container>
-  );
+    );
+  };
+
+  return <Container>{renderList(doctors)}</Container>;
 };
 
 export default DoctorList;

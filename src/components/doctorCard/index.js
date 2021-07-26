@@ -10,7 +10,14 @@ const DoctorCard = ({ item }) => {
   // Navigation
   const navigation = useNavigation();
 
-  const { foto, tratamento, nome, conselho, documento_conselho } = item;
+  const {
+    profissional_id,
+    foto,
+    tratamento,
+    nome,
+    conselho,
+    documento_conselho,
+  } = item;
 
   // foto de um doutor aleatorio
   const someDoctor = `https://iclinic-mkt.s3.amazonaws.com/ghost-images/images/2018/01/blog-como-ser-um-medico-bem-sucedido-5-atitudes-fundamentais.jpg`;
@@ -29,7 +36,12 @@ const DoctorCard = ({ item }) => {
         </Crm>
       </Info>
 
-      <Button onPress={() => navigation.navigate("DoctorProfile")}>
+      {/* TODO: create a link in redux that pass the doctorId for doctorPerfil   */}
+      <Button
+        onPress={() => {
+          navigation.navigate("DoctorProfile");
+        }}
+      >
         <MaterialIcons
           name="keyboard-arrow-right"
           size={29}
