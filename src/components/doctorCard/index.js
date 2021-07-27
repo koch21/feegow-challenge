@@ -5,7 +5,11 @@ import { light } from "../../styles/themes/default";
 
 // NAVIGATION
 import { useNavigation } from "@react-navigation/native";
+import { FlatList } from "react-native";
 
+// REDUX
+import { goTODoctor } from "../../store/ducks/doctorProfile";
+import { useDispatch } from "react-redux";
 const DoctorCard = ({ item }) => {
   // Navigation
   const navigation = useNavigation();
@@ -17,11 +21,17 @@ const DoctorCard = ({ item }) => {
     nome,
     conselho,
     documento_conselho,
+    especialidades,
   } = item;
 
   // foto de um doutor aleatorio
   const someDoctor = `https://iclinic-mkt.s3.amazonaws.com/ghost-images/images/2018/01/blog-como-ser-um-medico-bem-sucedido-5-atitudes-fundamentais.jpg`;
 
+  // function to goto a doctor profile
+  const dispatch = useDispatch();
+  const goToDoctorProfile = () => {
+    dispatch(goTODoctor(profissional_id));
+  };
   return (
     <Container>
       <Foto source={{ uri: foto === null ? someDoctor : foto }} />
@@ -30,7 +40,13 @@ const DoctorCard = ({ item }) => {
           {tratamento} {""}
           {String(nome).substr(0, 12)}
         </Name>
-        <Prof>cirurgiao</Prof>
+        <FlatList
+          data={especialidades}
+          keyExtractor={(item) => String(item.especialidade_id)}
+          renderItem={({ item }) => (
+            <Prof>{String(item.nome_especialidade).slice(0, 18)}</Prof>
+          )}
+        />
         <Crm>
           {conselho}: {documento_conselho}
         </Crm>
@@ -39,6 +55,7 @@ const DoctorCard = ({ item }) => {
       {/* TODO: create a link in redux that pass the doctorId for doctorPerfil   */}
       <Button
         onPress={() => {
+          goToDoctorProfile();
           navigation.navigate("DoctorProfile");
         }}
       >

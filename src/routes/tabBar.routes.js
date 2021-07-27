@@ -59,7 +59,7 @@ const TabRoutes = () => {
         backgroundColor: light.colors.primary,
       }}
       labeled={false}
-      initialRouteName="Schedule"
+      initialRouteName="Home"
       screenOptions={screenOptions}
     >
       <TabBar.Screen name="Home" component={Home} />

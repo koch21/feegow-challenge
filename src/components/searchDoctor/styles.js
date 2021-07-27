@@ -1,8 +1,13 @@
 import styled from "styled-components/native";
 
 export const Container = styled.View`
-  flex: 1;
-  background-color: ${(props) => props.theme.colors.white};
+  background-color: ${(props) => props.theme.colors.lightGrey};
+
+  width: ${(props) => props.theme.dimensions.width - 40}px;
+  border-radius: 16px;
+
+  align-self: center;
+  justify-content: space-between;
 `;
 export const Title = styled.Text`
   color: ${(props) => props.theme.colors.secondary};
@@ -18,13 +23,12 @@ export const ButtonView = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 22px;
+  margin: 16px 22px;
 `;
 export const Button = styled.TouchableOpacity`
   background-color: ${(props) => props.theme.colors.blue};
 
-  width: 170px;
-  height: 50px;
+  padding: 12px 62px;
   border-radius: 12px;
 
   align-items: center;
@@ -35,4 +39,16 @@ export const ButtonText = styled.Text`
 
   font-family: ${(props) => props.theme.fonts.bold};
   font-size: ${(props) => props.theme.fontSizes.small};
+`;
+export const SendParamsButton = styled.TouchableOpacity`
+  background-color: ${(props) => props.theme.colors.blue};
+
+  width: 62px;
+  height: 62px;
+  border-radius: 31px;
+
+  margin-top: 40px;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
 `;

@@ -20,6 +20,7 @@ export const Foto = styled.Image`
   border-radius: 20px;
 
   margin-left: 16px;
+  align-self: center;
   margin-top: 16px;
 `;
 export const Info = styled.View`
@@ -29,6 +30,8 @@ export const Info = styled.View`
 `;
 export const Name = styled.Text`
   color: ${(props) => props.theme.colors.darkestGrey};
+
+  margin-bottom: 4px;
 
   font-family: ${(props) => props.theme.fonts.bold};
   font-size: ${(props) => props.theme.fontSizes.medium};
@@ -42,6 +45,7 @@ export const Prof = styled.Text`
 export const Crm = styled.Text`
   color: ${(props) => props.theme.colors.darkestGrey};
 
+  margin-top: 4px;
   font-family: ${(props) => props.theme.fonts.medium};
   font-size: ${(props) => props.theme.fontSizes.small};
 `;

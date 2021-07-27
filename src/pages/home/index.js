@@ -1,75 +1,34 @@
-import React, { useState } from "react";
-import { Container, Title } from "./styles";
+import React, { useEffect, useState } from "react";
+import { FlatList } from "react-native";
+import { Container, Title, ButtonView, Button, ButtonText } from "./styles";
 
-import DoctorList from "../../components/doctorList";
-import api from "../../services/api";
-import { useEffect } from "react";
+// COMPONENTS
+import DoctorCard from "../../components/doctorCard";
 
-import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { Picker } from "@react-native-picker/picker";
+// REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllDoctors } from "../../store/fetchActions";
 
 const Home = ({ navigation }) => {
-  const [tipo, setTipo] = useState(["E", "P"]);
-  const [procedimento_id, setProcedimento_id] = useState([1, 2, 3, 4, 5]);
-  const [unidade_id, setUnidade_id] = useState(0);
-  const [data_start, setData_start] = useState(`27-07-2021`);
-  const [data_end, setData_end] = useState(`30-07-2021`);
+  // Redux dispatch
+  const dispatch = useDispatch();
 
-  const [param, setParam] = useState({
-    tipo: tipo,
-    procedimento_id: procedimento_id,
-    unidade_id: unidade_id,
-    data_start: data_start,
-    data_end: data_end,
-  });
+  // Recebendo a lista doctors da store
+  const doctors = useSelector((state) => state.doctors.content);
 
-  const [data, setData] = useState([]);
+  // renderizando a lista de doutores
   useEffect(() => {
-    api.get("v2/appoints/available-schedule", param).then((res) => {
-      return setData(res.data);
-    });
-  });
-  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+    dispatch(fetchAllDoctors(0));
+  }, [doctors, dispatch]);
 
-  const showDatePicker = () => {
-    setDatePickerVisibility(true);
-  };
-
-  const hideDatePicker = () => {
-    setDatePickerVisibility(false);
-  };
-
-  const handleConfirm = (date) => {
-    console.warn("A date has been picked: ", date);
-    hideDatePicker();
-  };
-
-  const [selectedLanguage, setSelectedLanguage] = useState();
   return (
     <Container>
-      <Title>Lista de Medicos</Title>
-      <Picker
-        selectedValue={selectedLanguage}
-        onValueChange={(itemValue, itemIndex) => setSelectedLanguage(itemValue)}
-      >
-        <Picker.Item label="Java" value="java" />
-        <Picker.Item label="JavaScript" value="js" />
-      </Picker>
-      <Picker
-        selectedValue={selectedLanguage}
-        onValueChange={(itemValue, itemIndex) => setSelectedLanguage(itemValue)}
-      >
-        <Picker.Item label="Java" value="java" />
-        <Picker.Item label="JavaScript" value="js" />
-      </Picker>
-      <Button title="Show Date Picker" onPress={showDatePicker} />
-      <DateTimePickerModal
-        isVisible={isDatePickerVisible}
-        mode="date"
-        onConfirm={handleConfirm}
-        onCancel={hideDatePicker}
+      <Title>Lista de medicos</Title>
+      <FlatList
+        data={doctors}
+        keyExtractor={(item) => String(item.profissional_id)}
+        renderItem={({ item }) => <DoctorCard item={item} />}
       />
-      <DoctorList />
     </Container>
   );
 };
