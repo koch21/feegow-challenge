@@ -20,6 +20,8 @@ export const Header = styled.View`
 export const Name = styled.Text`
   color: ${(props) => props.theme.colors.darkestGrey};
 
+  margin-bottom: 22px;
+
   font-family: ${(props) => props.theme.fonts.bold};
   font-size: ${(props) => props.theme.fontSizes.large};
 `;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { FlatList } from "react-native";
 import { Container, Title, ButtonView, Button, ButtonText } from "./styles";
 
@@ -6,20 +6,21 @@ import { Container, Title, ButtonView, Button, ButtonText } from "./styles";
 import DoctorCard from "../../components/doctorCard";
 
 // REDUX
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { fetchAllDoctors } from "../../store/fetchActions";
+import { goTODoctor } from "../../store/ducks/doctorProfile";
 
 const Home = ({ navigation }) => {
-  // Redux dispatch
+  const doctors = useSelector((state) => state.doctors.content);
   const dispatch = useDispatch();
 
-  // Recebendo a lista doctors da store
-  const doctors = useSelector((state) => state.doctors.content);
-
-  // renderizando a lista de doutores
   useEffect(() => {
     dispatch(fetchAllDoctors(0));
   }, [doctors, dispatch]);
+
+  const goTo = (item) => {
+    dispatch(goTODoctor(item));
+  };
 
   return (
     <Container>
@@ -27,7 +28,7 @@ const Home = ({ navigation }) => {
       <FlatList
         data={doctors}
         keyExtractor={(item) => String(item.profissional_id)}
-        renderItem={({ item }) => <DoctorCard item={item} />}
+        renderItem={({ item }) => <DoctorCard item={item} goToDoctor={goTo} />}
       />
     </Container>
   );

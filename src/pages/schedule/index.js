@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 // REDUX
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllSchedules } from "../../store/fetchActions/index";
-import { removeSchedule } from "../../store/ducks/schedules/index";
+import { cancelSchedule, reSchedule } from "../../store/ducks/schedules/index";
 
 // STYLES
 import { Container, Title } from "./styles";
@@ -11,61 +11,52 @@ import { FlatList } from "react-native";
 
 // COMPONENTS
 import ScheduleCard from "../../components/scheduleCard";
+import api from "../../services/api";
 
 const Schedule = ({ navigation }) => {
   // Redux dispatch
   const dispatch = useDispatch();
 
   // Recebendo o dispatch de fetchAllSchedules
-  const schedules = useSelector((state) => state.schedules);
+  const schedules = useSelector((state) => state.schedules.content);
+
+  const params = {
+    startDate: "05-08-2021",
+    endDate: "05-09-2021",
+  };
 
   // renderizando a lista de agendamentos
   useEffect(() => {
-    dispatch(fetchAllSchedules());
+    dispatch(fetchAllSchedules(params));
   }, [schedules, dispatch]);
 
-  // Function para remover um agendamento
-  const removeNewSchedule = (item) => {
-    dispatch(removeSchedule(item));
+  // Function para cancelar um agendamento
+  const cancel = (ev) => {
+    api.post(
+      `https://api.feegow.com/v1/api/appoints/cancel-appoint?agendamento_id=${ev.agendamento_id}&motivo_id=1`
+    );
+    console.log("Cancelado");
   };
 
-  const fakedata = [
-    {
-      agendamento_id: 30,
-      data: "07-08-2018",
-      horario: "09:00:00",
-      paciente_id: 100003,
-      procedimento_id: 3,
-      status_id: 1,
-      local_id: 0,
-      profissional_id: 1,
-      unidade_id: 1,
-      nome_fantasia: "Filial 1",
-    },
-    {
-      agendamento_id: 35,
-      data: "06-08-2018",
-      horario: "08:00:00",
-      paciente_id: 100003,
-      procedimento_id: 3,
-      status_id: 1,
-      local_id: 0,
-      profissional_id: 1,
-      unidade_id: 1,
-      nome_fantasia: "Filial 2",
-    },
-  ];
+  // Function para re-agendar uma consulta
+  const reschedule = (ev) => {
+    api.post(
+      `https://api.feegow.com/v1/api/appoints/reschedule?agendamento_id=${ev.agendamento_id}&motivo_id=1&data=15-08-2021&horario=19%3A00%3A00`
+    );
+    console.log("Re-agendado");
+  };
+
   return (
     <Container>
       <Title>Agendadas</Title>
       <FlatList
-        data={fakedata}
+        data={schedules}
         keyExtractor={(item) => String(item.agendamento_id)}
         renderItem={({ item }) => (
           <ScheduleCard
             item={item}
-            removeSchedule={removeNewSchedule}
-            navigation={navigation}
+            reSchedule={reschedule}
+            cancelSchedule={cancel}
           />
         )}
       />

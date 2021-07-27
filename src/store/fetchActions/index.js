@@ -1,9 +1,11 @@
 import api from "../../services/api";
 
-import { listDoctors, FoundDoctors } from "../ducks/doctors";
+import { listDoctors } from "../ducks/doctors";
+import { findDoctors } from "../ducks/specialties";
 import { listSchedule } from "../ducks/schedules";
-import { listSpecialties } from "../ducks/specialties";
+import { doctorFind } from "../ducks/scheduleDoctorFind";
 
+const UID = 111;
 export const fetchAllDoctors = (params) => {
   return (dispatch) => {
     api.get(`professional/list?ativo=1&unidade_id=${params}`).then((res) => {
@@ -12,19 +14,25 @@ export const fetchAllDoctors = (params) => {
   };
 };
 
-export const fetchSearchDoctors = (idParam) => {
+export const fetchSearchDoctors = (params) => {
   return (dispatch) => {
-    api.get(`/professional/search?profissional_id=${idParam}`).then((res) => {
-      return dispatch(FoundDoctors(res.data));
+    api.get(`/professional/search?profissional_id=${params}`).then((res) => {
+      return dispatch(findDoctors(res.data));
     });
   };
 };
 
-export const fetchAllSchedules = () => {
+export const fetchAllSchedules = (params) => {
+  const { endDate, startDate } = params;
   return (dispatch) => {
-    api.get("/v2/appoints/search").then((res) => {
-      return dispatch(listSchedule(res.data));
-    });
+    api
+      .get(
+        `https://api.feegow.com/v1/api/appoints/search?data_start=${startDate}&data_end=${endDate}&paciente_id=` +
+          UID
+      )
+      .then((res) => {
+        return dispatch(listSchedule(res.data));
+      });
   };
 };
 

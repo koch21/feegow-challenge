@@ -1,38 +1,30 @@
 import React, { useEffect } from "react";
+import { FlatList } from "react-native";
 import { Container } from "./styles";
 
-// Components
-import DoctorPerfil from "../../components/doctorPerfil";
-import { FlatList } from "react-native";
-
-// NAVIGATION
-import { useNavigation } from "@react-navigation/native";
+// COMPONENTS
+import DoctorProfileCard from "../../components/doctorProfileCard";
 
 // REDUX
 import { useSelector, useDispatch } from "react-redux";
-import { fetchSearchDoctors } from "../../store/fetchActions/index";
+import { goBackDoctor } from "../../store/ducks/doctorProfile";
 
 const DoctorProfile = () => {
-  // Navigation
-  const navigation = useNavigation();
-
-  // Redux dispatch
+  const doctorprofile = useSelector((state) => state.doctorprofile);
   const dispatch = useDispatch();
 
-  // Recebendo a lista doctors da store
-  const doctorprofile = useSelector((state) => state.doctorprofile.content);
-
-  // renderizando a lista de doutores
-  useEffect(() => {
-    dispatch(fetchSearchDoctors(0));
-  }, [doctorprofile, dispatch]);
+  const goBack = (item) => {
+    dispatch(goBackDoctor(item.profissional_id));
+  };
 
   return (
     <Container>
       <FlatList
-        data={doctorprofile.information}
+        data={doctorprofile}
         keyExtractor={(item) => String(item.profissional_id)}
-        renderItem={({ item }) => <DoctorPerfil item={item} />}
+        renderItem={({ item }) => (
+          <DoctorProfileCard item={item} GoBackToList={goBack} />
+        )}
       />
     </Container>
   );

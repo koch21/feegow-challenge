@@ -12,6 +12,16 @@ export const Header = styled.View`
   align-items: center;
   justify-content: center;
 `;
+
+export const BackButton = styled.TouchableOpacity`
+  position: absolute;
+
+  margin-top: 62px;
+  margin-left: 12px;
+  align-self: flex-start;
+  align-items: center;
+  justify-content: center;
+`;
 export const Foto = styled.Image`
   width: 110px;
   height: 110px;

@@ -16,6 +16,7 @@ export const light = {
     darkGrey: "#b5b5b5",
     darkestGrey: "#898989",
     blue: "#5c9bd4",
+    darkBlue: "#1f3f6f",
     green: "#6ab688",
   },
   fonts: {

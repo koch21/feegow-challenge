@@ -3,6 +3,7 @@ import { FlatList } from "react-native";
 import {
   Container,
   Header,
+  BackButton,
   Foto,
   Name,
   Age,
@@ -13,22 +14,19 @@ import {
   Footer,
   Button,
   ButtonText,
+  Ball,
 } from "./styles";
 
-const DoctorPerfil = ({ item, addSchedule }) => {
-  const {
-    foto,
-    tratamento,
-    nome,
-    data_nascimento,
-    especialidades,
-    CRM,
-    CPF,
-    sexo,
-    telefones,
-    celulares,
-    email,
-  } = item;
+// NAVIGATION
+import { useNavigation } from "@react-navigation/native";
+
+// STYLES
+import { MaterialIcons } from "@expo/vector-icons";
+import { light } from "../../styles/themes/default";
+
+const DoctorProfileCard = ({ item, GoBackToList }) => {
+  // Navigation
+  const navigation = useNavigation();
 
   // Calculando idade do Doutor pela data de nascimento
   const age = (data) => {
@@ -42,17 +40,27 @@ const DoctorPerfil = ({ item, addSchedule }) => {
   // foto de um doutor aleatorio
   const someDoctor = `https://iclinic-mkt.s3.amazonaws.com/ghost-images/images/2018/01/blog-como-ser-um-medico-bem-sucedido-5-atitudes-fundamentais.jpg`;
 
-  console.log(item);
   return (
     <Container>
+      <BackButton
+        onPress={() => {
+          navigation.navigate("Home");
+          GoBackToList(item);
+        }}
+      >
+        <MaterialIcons
+          name="keyboard-arrow-left"
+          size={32}
+          color={light.colors.white}
+        />
+      </BackButton>
       <Header>
-        <Foto source={{ uri: foto === null ? someDoctor : foto }} />
+        <Foto source={{ uri: item.foto === null ? someDoctor : item.foto }} />
         <Name>
-          {tratamento} {nome}
+          {item.tratamento} {item.nome}
         </Name>
-        <Age>{age(new Date(`${data_nascimento}`))} Anos</Age>
         <FlatList
-          data={especialidades}
+          data={item.especialidades}
           keyExtractor={(item) => String(item.especialidade_id)}
           renderItem={({ item }) => (
             <Expertise>{item.nome_especialidade}</Expertise>
@@ -74,4 +82,4 @@ const DoctorPerfil = ({ item, addSchedule }) => {
   );
 };
 
-export default DoctorPerfil;
+export default DoctorProfileCard;
