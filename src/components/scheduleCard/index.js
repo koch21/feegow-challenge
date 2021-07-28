@@ -19,11 +19,8 @@ import {
 // STYLES
 import { light } from "../../styles/themes/default";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import api from "../../services/api";
 
 const ScheduleCard = ({ item, cancelSchedule, reSchedule }) => {
-  const someDoctor = `https://iclinic-mkt.s3.amazonaws.com/ghost-images/images/2018/01/blog-como-ser-um-medico-bem-sucedido-5-atitudes-fundamentais.jpg`;
-
   return (
     <Container>
       <Header>
@@ -37,7 +34,9 @@ const ScheduleCard = ({ item, cancelSchedule, reSchedule }) => {
             size={15}
             color={light.colors.darkestGrey}
           />
-          <Place>{item.nome_fantasia}</Place>
+          <Place>
+            {item.nome_fantasia === null ? "Matriz" : item.nome_fantasia}
+          </Place>
         </CentralizationView>
         <CentralizationView>
           <MaterialCommunityIcons

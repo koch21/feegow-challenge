@@ -22,8 +22,9 @@ const DoctorProfile = () => {
 
   // Function para agendar uma consulta
   const Agendar = (ev) => {
+    const { profissional_id, especialidade_id, date, hour } = ev;
     api.post(
-      `https://api.feegow.com/v1/api/appoints/reschedule?agendamento_id=27146&motivo_id=1&data=15-08-2021&horario=19%3A00%3A00`
+      `/appoints/new-appoint?local_id=1&paciente_id%09=1&profissional_id%09=${profissional_id}&procedimento_id=5&especialidade_id=${especialidade_id}&data=${date}&horario=${hour}&valor=550&plano=1`
     );
     console.log("Agendada");
   };

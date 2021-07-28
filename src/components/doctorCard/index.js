@@ -9,7 +9,7 @@ import { light } from "../../styles/themes/default";
 // NAVIGATION
 import { useNavigation } from "@react-navigation/native";
 
-const DoctorCard = ({ item, goToDoctor }) => {
+const DoctorCard = ({ item, onPress }) => {
   // Navigation
   const navigation = useNavigation();
 
@@ -35,10 +35,9 @@ const DoctorCard = ({ item, goToDoctor }) => {
         </Crm>
       </Info>
 
-      {/* TODO: create a link in redux that pass the doctorId for doctorPerfil   */}
       <Button
         onPress={() => {
-          goToDoctor(item);
+          onPress(item);
           navigation.navigate("DoctorProfile");
         }}
       >

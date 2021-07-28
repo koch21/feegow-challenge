@@ -43,7 +43,8 @@ const DoctorProfileCard = ({ item, GoBackToList, ScheduleNew }) => {
     return age;
   };
 
-  const [unit, setUnit] = useState("P");
+  const [date, setDate] = useState();
+  const [hour, setHour] = useState();
 
   // foto de um doutor aleatorio
   const someDoctor = `https://iclinic-mkt.s3.amazonaws.com/ghost-images/images/2018/01/blog-como-ser-um-medico-bem-sucedido-5-atitudes-fundamentais.jpg`;
@@ -77,17 +78,17 @@ const DoctorProfileCard = ({ item, GoBackToList, ScheduleNew }) => {
       </Header>
 
       <Body>
-        <Local>Locais diponiveis:</Local>
+        <Local>Datas diponiveis:</Local>
         <Picker
-          selectedValue={unit}
-          onValueChange={(itemValue, itemIndex) => setUnit(itemValue)}
+          selectedValue={date}
+          onValueChange={(itemValue, itemIndex) => setDate(itemValue)}
         >
           <Picker.Item
             style={{
               color: light.colors.darkestGrey,
               fontFamily: light.fonts.bold,
             }}
-            label="Barra da tijuca"
+            label="21/07/1999"
             value="barra"
           />
           <Picker.Item
@@ -95,15 +96,31 @@ const DoctorProfileCard = ({ item, GoBackToList, ScheduleNew }) => {
               color: light.colors.darkestGrey,
               fontFamily: light.fonts.bold,
             }}
-            label="Centro"
+            label="21/08/1999"
+            value="centro"
+          />
+          <Picker.Item
+            style={{
+              color: light.colors.darkestGrey,
+              fontFamily: light.fonts.bold,
+            }}
+            label="21/09/1999"
+            value="centro"
+          />
+          <Picker.Item
+            style={{
+              color: light.colors.darkestGrey,
+              fontFamily: light.fonts.bold,
+            }}
+            label="21/10/1999"
             value="centro"
           />
         </Picker>
 
         <AvailableDate>Horarios diponiveis:</AvailableDate>
         <Picker
-          selectedValue={unit}
-          onValueChange={(itemValue, itemIndex) => setUnit(itemValue)}
+          selectedValue={hour}
+          onValueChange={(itemValue, itemIndex) => setHour(itemValue)}
         >
           <Picker.Item
             style={{
@@ -145,7 +162,7 @@ const DoctorProfileCard = ({ item, GoBackToList, ScheduleNew }) => {
           <Price>Valor da consulta</Price>
           <Value>100R$</Value>
         </ViewRow>
-        <Button onPress={() => ScheduleNew(item)}>
+        <Button onPress={() => ScheduleNew(date, hour)}>
           <ButtonText>Agendar</ButtonText>
         </Button>
       </Footer>

@@ -7,13 +7,6 @@ import {
   SendParamsButton,
 } from "./styles";
 
-// NAVIGATION
-import { useNavigation } from "@react-navigation/native";
-
-// REDUX
-import { useDispatch, useSelector } from "react-redux";
-import { fetchSpecialtiesPerUnity } from "../../store/fetchActions/index";
-
 // PICKERS
 import { Picker } from "@react-native-picker/picker";
 
@@ -22,13 +15,6 @@ import { light } from "../../styles/themes/default";
 import { Ionicons } from "@expo/vector-icons";
 
 const SearchDoctor = () => {
-  // Navigation
-  const navigation = useNavigation();
-
-  // Redux dispatch
-  const dispatch = useDispatch();
-  const specialties = useSelector((state) => state.specialties);
-
   // Estados iniciais
   const [unit, setUnit] = useState(0);
   const [specialty, setSpecialty] = useState();
@@ -37,10 +23,6 @@ const SearchDoctor = () => {
     unit,
     specialty,
   };
-
-  useEffect(() => {
-    dispatch(fetchSpecialtiesPerUnity(unit));
-  }, [unit, dispatch]);
 
   return (
     <>

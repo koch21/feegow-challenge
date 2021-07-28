@@ -20,30 +20,48 @@ const Schedule = ({ navigation }) => {
   // Recebendo o dispatch de fetchAllSchedules
   const schedules = useSelector((state) => state.schedules.content);
 
+  const today = new Date();
   const params = {
-    startDate: "05-08-2021",
-    endDate: "05-09-2021",
+    startDate:
+      today.getDate() +
+      "-" +
+      (today.getMonth() + 1) +
+      "-" +
+      today.getFullYear(),
+    endDate:
+      today.getDate() +
+      "-" +
+      (today.getMonth() + 4) +
+      "-" +
+      today.getFullYear(),
   };
+
+  const startDate =
+    today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
 
   // renderizando a lista de agendamentos
   useEffect(() => {
     dispatch(fetchAllSchedules(params));
-  }, [schedules, dispatch]);
+  });
 
   // Function para cancelar um agendamento
   const cancel = (ev) => {
-    api.post(
-      `https://api.feegow.com/v1/api/appoints/cancel-appoint?agendamento_id=${ev.agendamento_id}&motivo_id=1`
-    );
-    console.log("Cancelado");
+    api
+      .post(`/appoints/cancel-appoint?agendamento_id=${ev}&motivo_id=1`)
+      .then(() => {
+        console.log("Cancelado");
+      });
   };
 
   // Function para re-agendar uma consulta
   const reschedule = (ev) => {
-    api.post(
-      `https://api.feegow.com/v1/api/appoints/reschedule?agendamento_id=${ev.agendamento_id}&motivo_id=1&data=15-08-2021&horario=19%3A00%3A00`
-    );
-    console.log("Re-agendado");
+    api
+      .post(
+        `/appoints/reschedule?agendamento_id=${ev}&motivo_id=1&data=15-08-2021&horario=14%3A00%3A00`
+      )
+      .then(() => {
+        console.log(ev + "Re-agendado");
+      });
   };
 
   return (

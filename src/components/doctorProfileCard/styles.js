@@ -1,8 +1,8 @@
 import styled from "styled-components/native";
 
 export const Container = styled.View`
-  background-color: ${(props) => props.theme.colors.lightGrey};
   flex: 1;
+  background-color: ${(props) => props.theme.colors.lightGrey};
 `;
 export const Header = styled.View`
   height: ${(props) => props.theme.dimensions.width - 110}px;
@@ -54,7 +54,7 @@ export const Expertise = styled.Text`
 export const Body = styled.View`
   background-color: ${(props) => props.theme.colors.white};
 
-  height: ${(props) => props.theme.dimensions.width}px;
+  height: ${(props) => props.theme.dimensions.width - 30}px;
   border-top-left-radius: 22px;
   border-top-right-radius: 22px;
 
@@ -78,7 +78,9 @@ export const Local = styled.Text`
 export const Footer = styled.View`
   background-color: ${(props) => props.theme.colors.primary};
 
-  height: ${(props) => props.theme.dimensions.width - 300}px;
+  height: ${(props) => props.theme.dimensions.width - 270}px;
+  border-top-left-radius: 22px;
+  border-top-right-radius: 22px;
 
   align-items: center;
   justify-content: space-around;

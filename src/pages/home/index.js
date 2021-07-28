@@ -10,19 +10,25 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchAllDoctors } from "../../store/fetchActions";
 import { goTODoctor } from "../../store/ducks/doctorProfile";
 
-export const sum = (a, b) => a + b;
-
 const Home = ({ navigation }) => {
   const doctors = useSelector((state) => state.doctors.content);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchAllDoctors(0));
-  }, [doctors, dispatch]);
+  const fetchallDocs = async () => {
+    try {
+      dispatch(fetchAllDoctors(0));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  fetchallDocs();
 
   const goTo = (item) => {
     dispatch(goTODoctor(item));
   };
+
+  const renderItem = ({ item }) => <DoctorCard item={item} onPress={goTo} />;
 
   return (
     <Container>
@@ -30,7 +36,7 @@ const Home = ({ navigation }) => {
       <FlatList
         data={doctors}
         keyExtractor={(item) => String(item.profissional_id)}
-        renderItem={({ item }) => <DoctorCard item={item} goToDoctor={goTo} />}
+        renderItem={renderItem}
       />
     </Container>
   );

@@ -7,13 +7,6 @@ import {
   SendParamsButton,
 } from "./styles";
 
-// NAVIGATION
-import { useNavigation } from "@react-navigation/native";
-
-// REDUX
-import { useDispatch } from "react-redux";
-import { fetchAvailableSchedules } from "../../store/fetchActions/index";
-
 // PICKERS
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Picker } from "@react-native-picker/picker";
@@ -22,13 +15,7 @@ import { Picker } from "@react-native-picker/picker";
 import { light } from "../../styles/themes/default";
 import { Ionicons } from "@expo/vector-icons";
 
-const SearchSchedules = () => {
-  // Navigation
-  const navigation = useNavigation();
-
-  // Redux dispatch
-  const dispatch = useDispatch();
-
+const SearchSchedules = ({ item, appSchedule }) => {
   // Estados iniciais
   const [unit, setUnit] = useState("P");
   const [procedure, setProcedure] = useState("1");
