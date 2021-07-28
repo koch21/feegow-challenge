@@ -6,7 +6,6 @@ import {
   InputTxt,
   LoginBtn,
   LoginTxt,
-  ForgotTxt,
   SignupTxt,
   Button,
   Image,
@@ -14,6 +13,7 @@ import {
   Bottom,
 } from "./styles";
 import { AuthContext } from "../../context/authProvider";
+import { light } from "../../styles/themes/default";
 
 const SignIn = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -23,9 +23,8 @@ const SignIn = ({ navigation }) => {
   return (
     <Container>
       <Header>
-        <WelcomeTxt>Welcome Back!</WelcomeTxt>
+        <WelcomeTxt>BEM VINDO!</WelcomeTxt>
       </Header>
-      <Image source={require("../../assets/logo.png")} />
       <Bottom>
         <InputView>
           <InputTxt
@@ -34,8 +33,8 @@ const SignIn = ({ navigation }) => {
             autoCompleteType="email"
             onChangeText={(email) => setEmail(email.trim())}
             value={email}
-            placeholder="Email address"
-            placeholderTextColor="#121212"
+            placeholder="Email..."
+            placeholderTextColor={light.colors.darkestGrey}
           />
         </InputView>
         <InputView>
@@ -45,15 +44,15 @@ const SignIn = ({ navigation }) => {
             onChangeText={(password) => setPassword(password.trim())}
             value={password}
             secureTextEntry={true}
-            placeholder="Password"
-            placeholderTextColor="#121212"
+            placeholder="Senha..."
+            placeholderTextColor={light.colors.darkestGrey}
           />
         </InputView>
         <LoginBtn onPress={() => login(email, password)}>
-          <LoginTxt>Login</LoginTxt>
+          <LoginTxt>Entrar</LoginTxt>
         </LoginBtn>
         <Button onPress={() => navigation.navigate("SignUp")}>
-          <SignupTxt>Don’t have an account? Sign Up</SignupTxt>
+          <SignupTxt>Não possui uma conta? Registre-se</SignupTxt>
         </Button>
       </Bottom>
     </Container>

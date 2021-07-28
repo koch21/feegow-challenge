@@ -6,11 +6,9 @@
 
 Clone ou baixe o repo e coloque-o em qualquer lugar do seu computador. Abra a pasta no terminal. Digite o comando no terminal:
 
-1. Para android
-   yarn android
+1. Para android - _yarn android_
 
-2. Para IOS
-   fios ios
+2. Para IOS - _yarn ios_
 
 # Features
 
@@ -18,8 +16,12 @@ Clone ou baixe o repo e coloque-o em qualquer lugar do seu computador. Abra a pa
 
 O paciente pode realizar as seguintes funções:
 
-1. Ver os médicos
+1. Criar perfil
 
-2. Ver o perfil do médico para agendar uma consulta
+2. Ver os médicos
+
+3. Ver o perfil do médico para agendar uma consulta
+
+4. Agendar, Re-agendar e cancelar uma consulta
 
 <!-- # Screen Shots -->

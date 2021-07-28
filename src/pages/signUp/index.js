@@ -11,6 +11,7 @@ import {
   Bottom,
 } from "./styles";
 import { AuthContext } from "../../context/authProvider";
+import { light } from "../../styles/themes/default";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -37,9 +38,8 @@ const SignUp = () => {
   return (
     <Container>
       <Header>
-        <CreateTxt>Create Account</CreateTxt>
+        <CreateTxt>Criar Conta</CreateTxt>
       </Header>
-      <Image source={require("../../assets/logo.png")} />
       <Bottom>
         <InputView>
           <InputTxt
@@ -47,7 +47,7 @@ const SignUp = () => {
             autoCapitalize="none"
             autoCompleteType="email"
             placeholder="Email..."
-            placeholderTextColor="#121212"
+            placeholderTextColor={light.colors.darkestGrey}
             onChangeText={(email) => setEmail(email)}
             value={email}
           />
@@ -57,8 +57,8 @@ const SignUp = () => {
             autoCorrect={false}
             autoCapitalize="none"
             secureTextEntry={true}
-            placeholder="Password..."
-            placeholderTextColor="#121212"
+            placeholder="Senha..."
+            placeholderTextColor={light.colors.darkestGrey}
             onChangeText={(password) => setPassword(password)}
             value={password}
           />
@@ -68,14 +68,14 @@ const SignUp = () => {
             autoCorrect={false}
             autoCapitalize="none"
             secureTextEntry={true}
-            placeholder="Confirm Password..."
-            placeholderTextColor="#121212"
+            placeholder="Confirmar Senha..."
+            placeholderTextColor={light.colors.darkestGrey}
             onChangeText={(repassword) => setRepassword(repassword)}
             value={repassword}
           />
         </InputView>
         <RegisterBtn disabled={loading} onPress={() => handleSubmit()}>
-          <RegisterTxt>Register</RegisterTxt>
+          <RegisterTxt>Criar</RegisterTxt>
         </RegisterBtn>
       </Bottom>
     </Container>

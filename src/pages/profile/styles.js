@@ -6,18 +6,16 @@ export const Container = styled.View`
   padding: 20px;
 `;
 export const Title = styled.Text`
-  color: ${(props) => props.theme.colors.secondary};
+  color: ${(props) => props.theme.colors.darkestGrey};
 
   font-family: ${(props) => props.theme.fonts.bold};
-  font-size: ${(props) => props.theme.fontSizes.large};
+  font-size: 20px;
 
   margin-left: 2px;
   margin-top: 52px;
   margin-bottom: 22px;
 `;
 export const Wrapper = styled.View`
-  background: ${(props) => props.theme.colors.lightGrey};
-
   height: 70%;
   border-radius: 16px;
 
@@ -29,18 +27,17 @@ export const Avatar = styled.Image`
   height: 220px;
 
   border-radius: 110px;
-  margin-bottom: 20px;
 `;
 export const ConfigView = styled.TouchableOpacity`
   background: ${(props) => props.theme.colors.blue};
 
-  width: 50%;
+  width: 54%;
   border-radius: 8px;
-  padding: 19px;
+  padding: 22px;
 
   flex-direction: row;
   align-items: center;
-  margin-top: 12px;
+  margin-top: 58px;
 `;
 export const ConfigView1 = styled.TouchableOpacity`
   background: ${(props) => props.theme.colors.red};
@@ -51,16 +48,16 @@ export const ConfigView1 = styled.TouchableOpacity`
 
   flex-direction: row;
   align-items: center;
-  margin-top: 12px;
+  margin-top: 16px;
 `;
 export const ConfigText = styled.Text`
   color: ${(props) => props.theme.colors.primary};
 
-  font-family: ${(props) => props.theme.fonts.medium};
+  font-family: ${(props) => props.theme.fonts.semibold};
   font-size: 15px;
 
   align-self: center;
-  margin-left: 18%;
+  margin-left: 19%;
 `;
 export const LogoutTxt = styled.Text`
   color: ${(props) => props.theme.colors.primary};
@@ -69,5 +66,5 @@ export const LogoutTxt = styled.Text`
   font-size: 15px;
 
   align-self: center;
-  margin-left: 16%;
+  margin-left: 17%;
 `;

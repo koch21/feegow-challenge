@@ -34,20 +34,20 @@ export const Name = styled.Text`
   margin-bottom: 4px;
 
   font-family: ${(props) => props.theme.fonts.bold};
-  font-size: ${(props) => props.theme.fontSizes.medium};
+  font-size: 17px;
 `;
 export const Prof = styled.Text`
   color: ${(props) => props.theme.colors.darkestGrey};
 
   font-family: ${(props) => props.theme.fonts.medium};
-  font-size: ${(props) => props.theme.fontSizes.medium};
+  font-size: 17px;
 `;
 export const Crm = styled.Text`
   color: ${(props) => props.theme.colors.darkestGrey};
 
   margin-top: 4px;
   font-family: ${(props) => props.theme.fonts.medium};
-  font-size: ${(props) => props.theme.fontSizes.small};
+  font-size: 15px;
 `;
 export const Button = styled.TouchableOpacity`
   position: absolute;
@@ -67,5 +67,5 @@ export const ButtonText = styled.Text`
   color: ${(props) => props.theme.colors.primary};
 
   font-family: ${(props) => props.theme.fonts.bold};
-  font-size: ${(props) => props.theme.fontSizes.small};
+  font-size: 15px;
 `;

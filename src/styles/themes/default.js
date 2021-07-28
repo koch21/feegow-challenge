@@ -22,17 +22,11 @@ export const light = {
   },
   fonts: {
     ...DefaultTheme.fonts,
+    thin: "Inter_100Thin",
     regular: "Inter_400Regular",
     medium: "Inter_500Medium",
+    semibold: "Inter_600SemiBold",
     bold: "Inter_700Bold",
-  },
-  fontSizes: {
-    ...DefaultTheme.fontSizes,
-    smallest: 12,
-    small: 15,
-    medium: 17,
-    large: 20,
-    largest: 23,
   },
   dimensions: {
     ...DefaultTheme.dimensions,
