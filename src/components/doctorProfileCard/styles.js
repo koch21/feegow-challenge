@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 
 export const Container = styled.View`
-  background-color: ${(props) => props.theme.colors.blue};
+  background-color: ${(props) => props.theme.colors.lightGrey};
   flex: 1;
 `;
 export const Header = styled.View`
@@ -30,7 +30,7 @@ export const Foto = styled.Image`
   margin-top: 48px;
 `;
 export const Name = styled.Text`
-  color: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.theme.colors.darkestGrey};
 
   font-family: ${(props) => props.theme.fonts.bold};
   font-size: ${(props) => props.theme.fontSizes.large};
@@ -38,7 +38,7 @@ export const Name = styled.Text`
   margin-top: 12px;
 `;
 export const Age = styled.Text`
-  color: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.theme.colors.darkestGrey};
 
   font-family: ${(props) => props.theme.fonts.bold};
   font-size: ${(props) => props.theme.fontSizes.smallest};
@@ -46,7 +46,7 @@ export const Age = styled.Text`
   margin-top: 8px;
 `;
 export const Expertise = styled.Text`
-  color: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.theme.colors.darkestGrey};
 
   font-family: ${(props) => props.theme.fonts.medium};
   font-size: ${(props) => props.theme.fontSizes.smallest};
@@ -61,13 +61,13 @@ export const Body = styled.View`
   flex-direction: row;
 `;
 export const AvailableDate = styled.Text`
-  color: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.theme.colors.darkestGrey};
 
   font-family: ${(props) => props.theme.fonts.bold};
   font-size: ${(props) => props.theme.fontSizes.smallest};
 `;
 export const Local = styled.Text`
-  color: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.theme.colors.darkestGrey};
 
   font-family: ${(props) => props.theme.fonts.bold};
   font-size: ${(props) => props.theme.fontSizes.smallest};

@@ -51,7 +51,7 @@ const DoctorProfileCard = ({ item, GoBackToList }) => {
         <MaterialIcons
           name="keyboard-arrow-left"
           size={32}
-          color={light.colors.white}
+          color={light.colors.blue}
         />
       </BackButton>
       <Header>

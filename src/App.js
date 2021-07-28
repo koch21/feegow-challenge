@@ -3,6 +3,7 @@ import React from "react";
 
 // ROTAS
 import { NavigationContainer } from "@react-navigation/native";
+import AuthProvider from "./context/authProvider";
 import Routes from "./routes/routes";
 
 // STORE
@@ -35,7 +36,9 @@ const App = () => {
       <NavigationContainer>
         <StatusBar style={light.colors.secondary} />
         <Provider store={store}>
-          <Routes />
+          <AuthProvider>
+            <Routes />
+          </AuthProvider>
         </Provider>
       </NavigationContainer>
     </ThemeProvider>
