@@ -13,7 +13,7 @@ export const Title = styled.Text`
   color: ${(props) => props.theme.colors.secondary};
 
   font-family: ${(props) => props.theme.fonts.bold};
-  font-size: ${(props) => props.theme.fontSizes.large};
+  font-size: 20px;
 
   margin-left: 22px;
   margin-top: 72px;
@@ -38,7 +38,7 @@ export const ButtonText = styled.Text`
   color: ${(props) => props.theme.colors.primary};
 
   font-family: ${(props) => props.theme.fonts.bold};
-  font-size: ${(props) => props.theme.fontSizes.small};
+  font-size: 15px;
 `;
 export const SendParamsButton = styled.TouchableOpacity`
   background-color: ${(props) => props.theme.colors.blue};

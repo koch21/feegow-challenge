@@ -23,13 +23,13 @@ export const Name = styled.Text`
   margin-bottom: 22px;
 
   font-family: ${(props) => props.theme.fonts.bold};
-  font-size: ${(props) => props.theme.fontSizes.large};
+  font-size: 20px;
 `;
 export const Function = styled.Text`
   color: ${(props) => props.theme.colors.darkestGrey};
 
   font-family: ${(props) => props.theme.fonts.medium};
-  font-size: ${(props) => props.theme.fontSizes.small};
+  font-size: 15px;
 `;
 export const Img = styled.Image`
   width: 58px;
@@ -52,19 +52,19 @@ export const Place = styled.Text`
   color: ${(props) => props.theme.colors.darkestGrey};
 
   font-family: ${(props) => props.theme.fonts.bold};
-  font-size: ${(props) => props.theme.fontSizes.smallest};
+  font-size: 13px;
 `;
 export const Date = styled.Text`
   color: ${(props) => props.theme.colors.darkestGrey};
 
   font-family: ${(props) => props.theme.fonts.bold};
-  font-size: ${(props) => props.theme.fontSizes.smallest};
+  font-size: 13px;
 `;
 export const Hour = styled.Text`
   color: ${(props) => props.theme.colors.darkestGrey};
 
   font-family: ${(props) => props.theme.fonts.bold};
-  font-size: ${(props) => props.theme.fontSizes.smallest};
+  font-size: 13px;
 `;
 export const Footer = styled.View`
   flex-direction: row;
@@ -93,5 +93,5 @@ export const ButtonText = styled.Text`
   color: ${(props) => props.theme.colors.primary};
 
   font-family: ${(props) => props.theme.fonts.bold};
-  font-size: ${(props) => props.theme.fontSizes.small};
+  font-size: 15px;
 `;

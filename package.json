@@ -5,7 +5,8 @@
     "ios": "react-native run-ios",
     "web": "expo start --web",
     "start": "react-native start",
-    "format": "prettier --write"
+    "format": "prettier --write",
+    "test": "jest"
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.2.0",
@@ -21,6 +22,7 @@
     "expo-splash-screen": "~0.11.2",
     "expo-status-bar": "~1.0.4",
     "expo-updates": "~0.8.1",
+    "firebase": "^8.8.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "~0.63.4",
@@ -45,6 +47,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-native": "^3.11.0",
+    "jest": "^27.0.6",
     "prettier": "^2.3.2"
   },
   "private": true
