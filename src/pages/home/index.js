@@ -10,6 +10,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchAllDoctors } from "../../store/fetchActions";
 import { goTODoctor } from "../../store/ducks/doctorProfile";
 
+export const sum = (a, b) => a + b;
+
 const Home = ({ navigation }) => {
   const doctors = useSelector((state) => state.doctors.content);
   const dispatch = useDispatch();
