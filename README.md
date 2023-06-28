@@ -1,6 +1,6 @@
 # Feegow
 
-É um aplicativo hospitalar que permite agendar consultas.
+É um aplicativo hospitalar que permite agendar consultas feito em 5 dias como um challenge para entrar na empresa Feegow do grupo Docplanner.
 
 # Como executar o código
 
