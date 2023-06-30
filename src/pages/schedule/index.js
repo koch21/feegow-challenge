@@ -1,9 +1,5 @@
-import React, { useEffect } from "react";
-
-// REDUX
-import { useSelector, useDispatch } from "react-redux";
-import { fetchAllSchedules } from "../../store/fetchActions/index";
-import { cancelSchedule, reSchedule } from "../../store/ducks/schedules/index";
+import React, { useEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // STYLES
 import { Container, Title } from "./styles";
@@ -11,57 +7,52 @@ import { FlatList } from "react-native";
 
 // COMPONENTS
 import ScheduleCard from "../../components/scheduleCard";
-import api from "../../services/api";
 
 const Schedule = ({ navigation }) => {
-  // Redux dispatch
-  const dispatch = useDispatch();
+  const [schedules, setSchedules] = useState([]);
 
-  // Recebendo o dispatch de fetchAllSchedules
-  const schedules = useSelector((state) => state.schedules.content);
-
-  const today = new Date();
-  const params = {
-    startDate:
-      today.getDate() +
-      "-" +
-      (today.getMonth() + 1) +
-      "-" +
-      today.getFullYear(),
-    endDate:
-      today.getDate() +
-      "-" +
-      (today.getMonth() + 4) +
-      "-" +
-      today.getFullYear(),
-  };
-
-  const startDate =
-    today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
-
-  // renderizando a lista de agendamentos
   useEffect(() => {
-    dispatch(fetchAllSchedules(params));
-  });
+    const fetchSchedules = async () => {
+      try {
+        const storedSchedules = JSON.parse(await AsyncStorage.getItem("schedules"));
+        if (storedSchedules) {
+          setSchedules(storedSchedules);
+        } else {
+          const defaultSchedules = [
+            {
+              id: Date.now(),
+              doctorId: 123,
+              date: "15-08-2021",
+              time: "14:00:00",
+            },
+            {
+              id: Date.now(),
+              doctorId: 456,
+              date: "16-08-2021",
+              time: "10:30:00",
+            },
+          ];
+          await AsyncStorage.setItem("schedules", JSON.stringify(defaultSchedules));
+          setSchedules(defaultSchedules);
+        }
+      } catch (error) {
+        console.log("Error retrieving or storing schedules in AsyncStorage:", error);
+      }
+    };
+
+    fetchSchedules();
+  }, []);
 
   // Function para cancelar um agendamento
   const cancel = (ev) => {
-    api
-      .post(`/appoints/cancel-appoint?agendamento_id=${ev}&motivo_id=1`)
-      .then(() => {
-        console.log("Cancelado");
-      });
+    // Simulação da chamada à API para cancelar o agendamento
+    console.log("Cancelado");
   };
 
   // Function para re-agendar uma consulta
   const reschedule = (ev) => {
-    api
-      .post(
-        `/appoints/reschedule?agendamento_id=${ev}&motivo_id=1&data=15-08-2021&horario=14%3A00%3A00`
-      )
-      .then(() => {
-        console.log(ev + "Re-agendado");
-      });
+    // Simulação da chamada à API para reagendar a consulta
+    console.log(ev + " Re-agendado");
   };
 
   return (
@@ -69,13 +60,9 @@ const Schedule = ({ navigation }) => {
       <Title>Agendadas</Title>
       <FlatList
         data={schedules}
-        keyExtractor={(item) => String(item.agendamento_id)}
+        keyExtractor={(item) => String(item.id)}
         renderItem={({ item }) => (
-          <ScheduleCard
-            item={item}
-            reSchedule={reschedule}
-            cancelSchedule={cancel}
-          />
+          <ScheduleCard item={item} reSchedule={reschedule} cancelSchedule={cancel} />
         )}
       />
     </Container>

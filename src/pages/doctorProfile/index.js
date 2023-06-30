@@ -1,33 +1,52 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { FlatList } from "react-native";
 import { Container } from "./styles";
+import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // COMPONENTS
 import DoctorProfileCard from "../../components/doctorProfileCard";
 
-// REDUX
-import { useSelector, useDispatch } from "react-redux";
-import { goBackDoctor } from "../../store/ducks/doctorProfile";
-
-// API
-import api from "../../services/api";
-
 const DoctorProfile = () => {
-  const doctorprofile = useSelector((state) => state.doctorprofile);
-  const dispatch = useDispatch();
+  const navigation = useNavigation();
+  const doctorprofile = [
+    {
+      profissional_id: 123,
+      name: "Dr. John Doe",
+      specialty: "Cardiology",
+    },
+    {
+      profissional_id: 456,
+      name: "Dr. Jane Smith",
+      specialty: "Dermatology",
+    },
+    // Outros perfis de médicos mocados...
+  ];
 
-  const goBack = (item) => {
-    dispatch(goBackDoctor(item.profissional_id));
+  const goBack = () => {
+    navigation.goBack();
   };
 
-  // Function para agendar uma consulta
-  const Agendar = (ev) => {
-    const { profissional_id, especialidade_id, date, hour } = ev;
-    api.post(
-      `/appoints/new-appoint?local_id=1&paciente_id%09=1&profissional_id%09=${profissional_id}&procedimento_id=5&especialidade_id=${especialidade_id}&data=${date}&horario=${hour}&valor=550&plano=1`
-    );
-    console.log("Agendada");
+  const Agendar = async (ev) => {
+    try {
+      const appointment = {
+        id: Date.now(),
+        doctorId: ev.profissional_id,
+        date: "15-08-2021",
+        time: "14:00:00",
+      };
+  
+      const storedSchedules = JSON.parse(await AsyncStorage.getItem("schedules")) || [];
+      const updatedSchedules = [...storedSchedules, appointment];
+  
+      await AsyncStorage.setItem("schedules", JSON.stringify(updatedSchedules));
+  
+      console.log("Agendada");
+    } catch (error) {
+      console.log("Error storing appointment in AsyncStorage:", error);
+    }
   };
+  
 
   return (
     <Container>

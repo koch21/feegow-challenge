@@ -6,10 +6,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import AuthProvider from "./context/authProvider";
 import Routes from "./routes/routes";
 
-// STORE
-import { Provider } from "react-redux";
-import store from "./store";
-
 // TEMA
 import { ThemeProvider } from "styled-components";
 import { light } from "./styles/themes/default";
@@ -39,11 +35,9 @@ const App = () => {
     <ThemeProvider theme={light}>
       <NavigationContainer>
         <StatusBar style={light.colors.secondary} />
-        <Provider store={store}>
           <AuthProvider>
             <Routes />
           </AuthProvider>
-        </Provider>
       </NavigationContainer>
     </ThemeProvider>
   );
